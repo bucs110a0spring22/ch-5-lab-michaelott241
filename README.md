@@ -8,18 +8,20 @@
 _Replace anything surrounded by the `< >` symbols._
 
 ## SUMMARY:
- < Provide a short description of your program's functionality. No more than a couple sentences. >
+In this lab, the draw feature was utilized in order to construct a dartboard. Then, the throwdart function was used to randomly land the dart on the board. The montePi function, which uses an accumulator and a loop, was also in use. Finally, a monte carlo simulator was used. 
 
 ## GRACE DAYS
-Grace days used for this assignment: < # >
+Grace days used for this assignment: 1
 
-Grace days remaining: < # >/5
+Grace days remaining: 4/5
 
 ## KNOWN BUGS AND INCOMPLETE PARTS:
- < What parts of the project you were not able to complete >
+To my knowledge, I was able to complete all parts of the lab. 
 
 ## REFERENCES:
- < List any outside resources used >
+Aside from the lab description provided and the python library, only one outside source was used to draw a circle.  
+
+https://www.geeksforgeeks.org/draw-circle-in-python-using-turtle/
 
 ## MISCELLANEOUS COMMENTS:
- < Anything you would like the grader to know >
+None
