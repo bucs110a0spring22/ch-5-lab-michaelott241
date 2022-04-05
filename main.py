@@ -63,9 +63,12 @@ def throwDart(myturtle=None):
   x=random.uniform(-1,1)
   y=random.uniform(-1,1)
   myturtle.goto(x,y)
+  if isInCircle(myturtle,0):
+    myturtle.color("red")
   myturtle.down()
   myturtle.dot()
   myturtle.up()
+  myturtle.color("black")
 def isInCircle(myturtle=None, circle_center_x=0, circle_center_y=0, radius=0):
   if myturtle.distance(0,0)<=1:
     return True
@@ -89,6 +92,8 @@ def playDarts(myturtle=None):
     print("Player 2 wins!")
   else:
     print("Tie!")
+  p1Turtle.clear()
+  p2Turtle.clear()
 def montePi(myturtle=None, num_darts=0):
   myturtle=turtle.Turtle()
   insideCount=0
@@ -99,7 +104,68 @@ def montePi(myturtle=None, num_darts=0):
       insideCount=insideCount+1
     total=total+1
   return insideCount/total*4
-
+def modifiedDarts(myturtle=None):
+  p1Score=100
+  p2Score=100
+  p1Turtle=turtle.Turtle()
+  p2Turtle=turtle.Turtle()
+  p1Turtle.speed(0)
+  p2Turtle.speed(0)
+  while(p1Score!=0 and p2Score!=0):
+    p1Turtle.up()
+    x=random.uniform(-1,1)
+    y=random.uniform(-1,1)
+    p1Turtle.goto(x,y)
+    if isInCircle(p1Turtle,0):
+      p1Turtle.color("red")
+    p1Turtle.down()
+    p1Turtle.dot()
+    p1Turtle.up()
+    p1Turtle.color("black")
+    p2Turtle.up()
+    if isInCircle(p1Turtle):
+      if x>=0 and y>=0:
+        p1Score=p1Score-10
+      if x<=0 and y>=0:
+        p1Score=p1Score-5
+      if x>=0 and y<=20:
+        p1Score=p1Score-10
+      if x<=0 and y<=0:
+        p1Score=p1Score-15
+    x=random.uniform(-1,1)
+    y=random.uniform(-1,1)
+    p2Turtle.goto(x,y)
+    if isInCircle(p2Turtle,0):
+      p2Turtle.color("blue")
+    p2Turtle.down()
+    p2Turtle.dot()
+    p2Turtle.up()
+    p2Turtle.color("black")
+    if isInCircle(p2Turtle):
+      if x>=0 and y>=0:
+        p2Score=p2Score-10
+      if x<=0 and y>=0:
+        p2Score=p2Score-5
+      if x>=0 and y<=20:
+        p2Score=p2Score-10
+      if x<=0 and y<=0:
+        p2Score=p2Score-15
+    if p1Score<0:
+      print("P1 Bust!")
+      p1Score=100
+    if p2Score<0:
+      print("P2 Bust!")
+      p2Score=100
+    print("P1 Score: "+str(p1Score))
+    print("P2 Score: "+str(p2Score))
+  if p1Score==0 and p2Score==0:
+    print("Tie!")
+  elif p1Score==0:
+    print("Player 1 wins!")
+  else:
+    print("Player 2 wins!")
+  p1Turtle.clear()
+  p2Turtle.clear()
 
 #########################################################
 #         Do not alter any code below here              #
@@ -133,7 +199,6 @@ def main():
     print("=========== Part C ===========")
     darty.clear()
     setUpDartboard(window, darty)
-    
     # Includes the following code in order to update animation periodically
     # instead of for each throw (saves LOTS of time):
     BATCH_OF_DARTS = 5000
@@ -145,6 +210,10 @@ def main():
     print("\nThe estimation of pi using "+str(number_darts)+" virtual darts is " + str(approx_pi))
     print("\tPart C Complete...")
     # Don't hide or mess with window while it's 'working'
+    darty.clear()
+    setUpDartboard(window,darty)
+    window.tracer(1)
+    modifiedDarts(darty)
     window.exitonclick()
 
 main()
